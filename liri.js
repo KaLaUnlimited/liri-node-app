@@ -1,6 +1,7 @@
  var dotenv = require("dotenv").config();
  var keys = require("./keys.js");
  var choice = process.argv[2];
+ var query = process.argv[3];
 
  var Twitter = require('twitter');
  var Spotify = require('node-spotify-api');
@@ -27,12 +28,12 @@
 
      case "spotify-this-song":
          //tweet function here
-         retrieveSpotify();
+         retrieveSpotify(query);
          break;
 
      case "movie-this":
          //tweet function here
-         retrieveMovie();
+         retrieveMovie(query);
          break;
 
      case "do-what-it-says":
@@ -63,7 +64,7 @@
      });
  }
 
- function retrieveSpotify(){
+ function retrieveSpotify(a){
 
  // var spotify = new Spotify({
  //   id: <your spotify client id>,
@@ -71,7 +72,7 @@
  // });
 
   var spotify = new Spotify(keys.spotify);
- spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+ spotify.search({ type: 'track', query: a }, function(err, data) {
    if (err) {
      return console.log('Error occurred: ' + err);
    }
@@ -79,8 +80,9 @@
 
   		console.log("");
   		console.log("");
+  		console.log("******Result*******");
 
-		console.log("Artists: " + data.tracks.items[0].artists[0].name);
+		console.log("Artist: " + data.tracks.items[0].artists[0].name);
 		console.log("Song: " + data.tracks.items[0].name);
 		if(data.tracks.items[0].preview_url=="null"){
 			console.log("Preview: not available ");
@@ -95,7 +97,7 @@
 
  }
 
- // function retrieveMovie(){
+ // function retrieveMovie(a ){
 
 
  // // Then run a request to the OMDB API with the movie specified
