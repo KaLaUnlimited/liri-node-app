@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^5.0.0"
+    "dotenv": "^5.0.0",
+    "keys.js": "^1.0.2",
+    "node-spotify-api": "^1.0.7",
+    "twitter": "^1.7.1"
   }
 }
