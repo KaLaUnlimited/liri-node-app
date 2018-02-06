@@ -5,6 +5,7 @@ var choice=process.argv[2];
  var Twitter = require('twitter');
  var Spotify = require('node-spotify-api');
  var request = require("request");
+ var fs = require("fs");
   
 
 
@@ -42,63 +43,103 @@ switch(choice){
 
 
 function retrieveTweets(){
-// var client = new Twitter({
-//     // testing : '123'
-//   consumer_key: twitterConsumerKey,
-//   consumer_secret: twitterConsumerSecret,
-//   access_token_key:twitterAccessKey,
-//   access_token_secret: twitterAccessSecret
-// });
+
   var client = new Twitter(keys.twitter);
-//console.log("client " + client.testing)
+
  
 
 var params = {screen_name: 'KaLa_Kode'};
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
   if (!error) {
-    console.log(tweets);
+  	console.log("");
+  	console.log("The " + tweets.length + " most recent tweets: "  )
+  	for(var i =0; i<tweets.length;i++){
+
+
+  	
+    console.log((i+1) +"......" + tweets[i].text);
+}
   }
 });
 }
 
-function retrieveSpotify(){
+// function retrieveSpotify(){
 
-// var spotify = new Spotify({
-//   id: <your spotify client id>,
-//   secret: <your spotify client secret>
+// // var spotify = new Spotify({
+// //   id: <your spotify client id>,
+// //   secret: <your spotify client secret>
+// // });
+ 
+//  var spotify = new Spotify(keys.spotify);
+// spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+//   if (err) {
+//     return console.log('Error occurred: ' + err);
+//   }
+ 
+// console.log(data.tracks.items); 
 // });
- 
- var spotify = new Spotify(keys.spotify);
-spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-  if (err) {
-    return console.log('Error occurred: ' + err);
-  }
- 
-console.log(data.tracks.items); 
-});
 
 
-}
+// }
 
-function retrieveMovie(){
+// function retrieveMovie(){
 
 
-// Then run a request to the OMDB API with the movie specified
-request("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy", function(error, response, body) {
+// // Then run a request to the OMDB API with the movie specified
+// request("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy", function(error, response, body) {
 
-  // If the request is successful (i.e. if the response status code is 200)
-  if (!error && response.statusCode === 200) {
+//   // If the request is successful (i.e. if the response status code is 200)
+//   if (!error && response.statusCode === 200) {
 
-    // Parse the body of the site and recover just the imdbRating
-    // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-    console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
-  }
-});
-}
+//     // Parse the body of the site and recover just the imdbRating
+//     // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+//     console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
+//   }
+// });
+// }
  
 
- function liriSays(){
- 	console.log("This function works now read from random.txt");
- }
+//  function liriSays(){
+//  	console.log("This function works now read from random.txt");
+ 
+ 		
+
+
+// // This block of code will read from the "movies.txt" file.
+// // It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+// // The code will store the contents of the reading inside the variable "data"
+// fs.readFile("random.txt", "utf8", function(error, data) {
+
+//   // If the code experiences any errors it will log the error to the console.
+//   if (error) {
+   
+
+//     fs.writeFile("log.txt", error, function(err){
+//         console.log(" rejoices")
+
+
+//     })
+//      return console.log(error);
+//   }
+
+//   // We will then print the contents of data
+//   console.log("Spotify sequence for: " + data + " will begin...");
+
+
+//     fs.writeFile("random.txt", error, function(err){
+//         console.log(" rejoices")
+
+
+//     })
+
+//   // // Then split it by commas (to make it more readable)
+//   // var dataArr = data.split(",");
+
+//   // // We will then re-display the content as an array for later use.
+//   // console.log(dataArr);
+
+// });
+
+//  }
 
 
