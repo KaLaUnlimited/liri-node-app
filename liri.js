@@ -103,15 +103,16 @@
 
      // Parse the body of the site and recover just the imdbRating
      // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-     console.log("\nTitle: " + body);
-     console.log("\nTitle: " + JSON.parse(body).Title);
-     console.log("\nYear: " + JSON.parse(body).Year);
-   	 console.log("\nIMDB rating is: " + JSON.parse(body).imdbRating);
-     console.log("\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);//.Source.Rotten Tomatoes);
-     console.log("\nCountry where the movie was produced: " + JSON.parse(body).Country);
-     console.log("\nLanguage of the movie:" + JSON.parse(body).Language);
-     console.log("\nPlot of the movie: " + JSON.parse(body).Plot);
-     console.log("\nActors in the movie " + JSON.parse(body).Actors);
+     //console.log("\nTitle: " + body);
+    
+     console.log("\nResult:\n\nTitle: "+ JSON.parse(body).Title
+     			+"\nYear: " + JSON.parse(body).Year
+     			+"\nIMDB rating is: " + JSON.parse(body).imdbRating  
+   	            +"\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value
+                +"\nCountry where the movie was produced: " + JSON.parse(body).Country
+     			+"\nLanguage of the movie:" + JSON.parse(body).Language
+    			+"\nPlot of the movie: " + JSON.parse(body).Plot
+     			+"\nActors: " + JSON.parse(body).Actors);
    
    }
  });
