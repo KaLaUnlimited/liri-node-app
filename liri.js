@@ -14,31 +14,30 @@
 
 
 
- // var twitterConsumerKey = keys.twitter.consumer_key;
- // var twitterConsumerSecret = keys.twitter.consumer_secret;
- // var twitterAccessKey = keys.twitter.access_token_key;
- // var twitterAccessSecret = keys.twitter.access_token_secret;
+
 
  switch (choice) {
 
      case "my-tweets":
-         //tweet function here
+      
          retrieveTweets();
          break;
 
      case "spotify-this-song":
-         //tweet function here
+         
          retrieveSpotify(query);
          break;
 
      case "movie-this":
-         //tweet function here
+        if(!query){
+         	query="Mr.Nobody";
+         }
          retrieveMovie(query);
          break;
 
      case "do-what-it-says":
-         //tweet function here
-         liriSays();
+         
+         liriSays(query);
          break;
  }
 
@@ -66,17 +65,13 @@
 
  function retrieveSpotify(a){
 
- // var spotify = new Spotify({
- //   id: <your spotify client id>,
- //   secret: <your spotify client secret>
- // });
-
+ 
   var spotify = new Spotify(keys.spotify);
  spotify.search({ type: 'track', query: a }, function(err, data) {
    if (err) {
      return console.log('Error occurred: ' + err);
    }
-  // for (var i = 0; i < data.length; i++) {
+  
 
   		console.log("");
   		console.log("");
@@ -90,29 +85,41 @@
 		console.log("Preview: " + data.tracks.items[0].preview_url);
 		console.log( "Album: " + data.tracks.items[0].album.name);
                  
-   //         }
+  
   
  });
 
 
  }
 
- // function retrieveMovie(a ){
+ function retrieveMovie(a ){
 
 
- // // Then run a request to the OMDB API with the movie specified
- // request("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy", function(error, response, body) {
+ // Then run a request to the OMDB API with the movie specified
+ request("http://www.omdbapi.com/?t="+a+"&y=&plot=short&apikey=trilogy", function(error, response, body) {
 
- //   // If the request is successful (i.e. if the response status code is 200)
- //   if (!error && response.statusCode === 200) {
+   // If the request is successful (i.e. if the response status code is 200)
+   if (!error && response.statusCode === 200) {
 
- //     // Parse the body of the site and recover just the imdbRating
- //     // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
- //     console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
- //   }
- // });
- // }
+     // Parse the body of the site and recover just the imdbRating
+     // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+     console.log("\nTitle: " + body);
+     console.log("\nTitle: " + JSON.parse(body).Title);
+     console.log("\nYear: " + JSON.parse(body).Year);
+   	 console.log("\nIMDB rating is: " + JSON.parse(body).imdbRating);
+     console.log("\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);//.Source.Rotten Tomatoes);
+     console.log("\nCountry where the movie was produced: " + JSON.parse(body).Country);
+     console.log("\nLanguage of the movie:" + JSON.parse(body).Language);
+     console.log("\nPlot of the movie: " + JSON.parse(body).Plot);
+     console.log("\nActors in the movie " + JSON.parse(body).Actors);
+   
+   }
+ });
 
+}
+
+ 
+ // 
 
  //  function liriSays(){
  //  	console.log("This function works now read from random.txt");
