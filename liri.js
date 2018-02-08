@@ -162,7 +162,7 @@
          query = data;
 
          selection("spotify-this-song");
-         //log(data);
+         
 
      });
 
