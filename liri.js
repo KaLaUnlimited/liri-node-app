@@ -53,13 +53,13 @@
          if (!error) {
              console.log("");
              console.log("The " + tweets.length + " most recent tweets: ")
-             var t= " ";
+             var t= "\nTwitter Result:\n ";
              for (var i = 0; i < tweets.length; i++) {
 
 
 
-                 console.log((i + 1) + "......" + tweets[i].text);
-                 t+="\n"+ (i + 1) + "......" + tweets[i].text;
+                 console.log((i + 1) + "    " + tweets[i].text);
+                 t+="\n"+'['+ (i + 1) +']'+ "     \t" + tweets[i].text;
                   
              }
              log(t);
@@ -84,7 +84,7 @@
          console.log("");
          console.log("******Result*******");
 
-         var data = "\nArtist: " + data.tracks.items[0].artists[0].name +
+         var data = "\nSpotify Result:\nArtist: " + data.tracks.items[0].artists[0].name +
              "\nSong: " + data.tracks.items[0].name +
              previewURL() +
 
@@ -120,7 +120,7 @@
              // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
              //console.log("\nTitle: " + body);
 
-             var data = "\nResult:\nTitle: " + JSON.parse(body).Title +
+             var data = "\nOMDB Result:\nTitle: " + JSON.parse(body).Title +
                  "\nYear: " + JSON.parse(body).Year +
                  "\nIMDB rating is: " + JSON.parse(body).imdbRating +
                  "\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value +
