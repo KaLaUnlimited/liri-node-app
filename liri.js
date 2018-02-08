@@ -24,7 +24,7 @@
              break;
 
          case "spotify-this-song":
-         
+
              retrieveSpotify(query);
              break;
 
@@ -53,13 +53,20 @@
          if (!error) {
              console.log("");
              console.log("The " + tweets.length + " most recent tweets: ")
+             var t= " ";
              for (var i = 0; i < tweets.length; i++) {
 
 
 
                  console.log((i + 1) + "......" + tweets[i].text);
+                 t+="\n"+ (i + 1) + "......" + tweets[i].text;
+                  
              }
+             log(t);
          }
+
+
+
      });
  }
 
@@ -73,21 +80,29 @@
          }
 
 
-        
+
          console.log("");
          console.log("******Result*******");
 
-        console.log("Artist: " + data.tracks.items[0].artists[0].name);
-         console.log("Song: " + data.tracks.items[0].name);
-         if (data.tracks.items[0].preview_url == "null") {
-             console.log("Preview: not available ");
+         var data = "\nArtist: " + data.tracks.items[0].artists[0].name +
+             "\nSong: " + data.tracks.items[0].name +
+             previewURL() +
+
+             "Album: " + data.tracks.items[0].album.name;
+
+         console.log(data)
+         log(data);
+
+         function previewURL() {
+             if (data.tracks.items[0].preview_url == "null") {
+                 return "\nPreview: not available \n"
+             } else {
+                 return "\nPreview: " + data.tracks.items[0].preview_url+'\n'
+             }
          }
-         console.log("Preview: " + data.tracks.items[0].preview_url);
-         console.log("Album: " + data.tracks.items[0].album.name);
-
-
-
      });
+
+
 
 
  }
@@ -105,14 +120,17 @@
              // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
              //console.log("\nTitle: " + body);
 
-             console.log("\nResult:\n\nTitle: " + JSON.parse(body).Title +
+             var data = "\nResult:\nTitle: " + JSON.parse(body).Title +
                  "\nYear: " + JSON.parse(body).Year +
                  "\nIMDB rating is: " + JSON.parse(body).imdbRating +
                  "\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value +
                  "\nCountry where the movie was produced: " + JSON.parse(body).Country +
                  "\nLanguage of the movie:" + JSON.parse(body).Language +
                  "\nPlot of the movie: " + JSON.parse(body).Plot +
-                 "\nActors: " + JSON.parse(body).Actors);
+                 "\nActors: " + JSON.parse(body).Actors;
+
+             console.log(data);
+             log(data);
 
          }
      });
@@ -134,27 +152,35 @@
 
 
              fs.writeFile("log.txt", error, function(err) {
-                 
+
              })
              return console.log(error);
          }
 
          // We will then print the contents of data
          console.log("Spotify sequence for: '" + data + "' will begin...");
-         query =data;
-         
+         query = data;
+
          selection("spotify-this-song");
+         //log(data);
 
      });
+
+
  }
 
 
  function log(data) {
-     fs.writeFile("log.txt", error, function(err) {
-         console.log(" ")
 
+     var time = new Date();
+     var formattedTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+     var d = new Date()
+     var today = d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear();
+
+     fs.appendFile("log.txt", "\n\n*******Data logged: " + today + " " + formattedTime +  data, function(err) {
 
      })
  }
+
 
  selection(choice);
