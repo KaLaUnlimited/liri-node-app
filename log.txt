@@ -49,3 +49,14 @@ Artist: Backstreet Boys
 Song: I Want It That Way
 Preview: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=6caad05e236244ab9864bb48b13b48af
 Album: The Hits--Chapter One
+
+*******Data logged: 1/8/2018 11:18:53
+OMDB Result:
+Title: Mr. Nobody
+Year: 2009
+IMDB rating is: 7.9
+Rotten Tomatoes Rating: 66%
+Country where the movie was produced: Belgium, Germany, Canada, France, USA, UK
+Language of the movie:English, Mohawk
+Plot of the movie: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
