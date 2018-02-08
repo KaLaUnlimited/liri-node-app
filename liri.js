@@ -59,7 +59,7 @@
 
 
                  console.log((i + 1) + "    " + tweets[i].text);
-                 t+="\n"+'['+ (i + 1) +']'+ "     \t" + tweets[i].text;
+                 t+="\n"+'['+ (i + 1) +']'+ " \t" + tweets[i].text;
                   
              }
              log(t);
